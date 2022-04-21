@@ -99,7 +99,10 @@ linux:
 	$(MAKE) all MYCFLAGS=-DLUA_USE_LINUX MYLIBS="-Wl,-E -ldl -lreadline -lhistory -lncurses"
 
 macosx:
-	$(MAKE) all MYCFLAGS=-DLUA_USE_LINUX MYLIBS="-lreadline"
+	$(MAKE) all "LUA_A=liblua.dylib" \
+	"AR=$(CC) -shared -o" "RANLIB=:" \
+	"MYCFLAGS=-DLUA_USE_LINUX" "MYLIBS=-lreadline"
+#	$(MAKE) all MYCFLAGS=-DLUA_USE_LINUX MYLIBS="-lreadline"
 # use this on Mac OS X 10.3-
 #	$(MAKE) all MYCFLAGS=-DLUA_USE_MACOSX
 
